@@ -1,0 +1,21 @@
+{
+  "name": "myweatherapp",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview"
+  },
+  "dependencies": {
+    "dotenv": "^16.0.3",
+    "mapbox-gl": "^2.14.1",
+    "preact": "^10.13.1"
+  },
+  "devDependencies": {
+    "@preact/preset-vite": "^2.5.0",
+    "@types/mapbox-gl": "^2.7.11",
+    "vite": "^4.3.2"
+  }
+}
