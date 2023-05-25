@@ -9,6 +9,7 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "datamaps": "^0.5.9",
     "dotenv": "^16.0.3",
     "mapbox-gl": "^2.14.1",
     "preact": "^10.13.1"

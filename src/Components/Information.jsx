@@ -1,50 +1,46 @@
-import mapboxgl from 'mapbox-gl/dist/mapbox-gl'
-import { useEffect, useRef, useState } from 'preact/hooks';
-
 export default function Main({ weather }) {
-    mapboxgl.accessToken = `${import.meta.env.VITE_MAP_API}`;
-
-    const mapContainer = useRef(null);
-    const map = useRef(null);
-    const [lng, setLng] = useState(0);
-    const [lat, setLat] = useState(0);
-    const [zoom, setZoom] = useState(9);
-
-    useEffect(() => {
-        if (map.current) return;
-        setLat(weather?.location.lat)
-        setLng(weather?.location.lon)
-
-        console.log(lat);
-        console.log(lng);
-
-        map.current = new mapboxgl.Map({
-            container: mapContainer.current,
-            style: 'mapbox://styles/mapbox/streets-v12',
-            center: [lng, lat],
-            zoom: zoom
-        });
-    });
-
     return (
-        <div>
-            <div>{weather?.location.name}</div>
-            <div>{weather?.location.country}</div>
-            <div>
-                <div>
-                    <img
-                        src={`http:${weather?.current.condition.icon}`}
-                        alt={weather?.current.condition.text}
-                        width={50}
-                    />
-                </div>
-                <div>
-                    <div>{weather?.current.condition.text}</div>
-                    <div>{weather?.current.temp_c}°</div>
-                </div>
+        <>
+            <div className='columns p-2 is-mobile'>
+                <div className="column is-12">
+                    <div class="card">
+                        <header class="card-header">
+                            <p class="card-header-title">
+                                <figure class="image is-64x64">
+                                    <img
+                                        src={`http:${weather?.current.condition.icon}`}
+                                        alt={weather?.current.condition.text}
+                                    />
+                                </figure>
 
-                <div style={{ height: 400, width: 200 }} ref={mapContainer} className="map-container" />
+                                <div className="is-size-5 m-0 p-0">&nbsp;{weather?.location.name}, {weather?.location.country}</div>
+                            </p>
+                        </header>
+                        <div class="card-content">
+                            <p className="is-size-1 has-text-weight-bold m-0 p-0">
+                                {weather?.current.temp_c}°
+                            </p>
+
+                            <p className="is-size-6 has-text-weight-semibold m-0 p-0">
+                                {weather?.current.condition.text}
+                            </p>
+                        </div>
+                    </div>
+<br />
+                    <div className="card">
+                        <iframe
+                            width="100%"
+                            height="350"
+                            frameborder="0"
+                            scrolling="no"
+                            marginheight="0"
+                            marginwidth="0"
+                            src={`https://www.openstreetmap.org/export/embed.html?bbox=${weather?.location.lon - 1}%2C${weather?.location.lat - 1}%2C${weather?.location.lon + 1}%2C${weather?.location.lat + 1}&amp;layer=transportmap&amp;marker=10.396%2C-75.50999999999999`}
+                            style="border: 1px solid black"
+                        ></iframe>
+                    </div>
+                </div>
             </div>
-        </div>
+        </>
     )
 }

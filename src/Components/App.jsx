@@ -9,13 +9,13 @@ export default function App() {
     loadInfo()
   }, [])
 
-  useEffect(()=>{
+  useEffect(() => {
     document.title = `Weather | ${weather?.location.name ?? ''}`
-  },[weather])
+  }, [weather])
 
   const loadInfo = async (city = 'Cartagena') => {
     try {
-      const request = await fetch(`${import.meta.env.VITE_WEATHER_API_URL}&key=${import.meta.env.VITE_WEATHER_KEY}&q=${city}`)
+      const request = await fetch(`${import.meta.env.VITE_WEATHER_API_URL}&key=${import.meta.env.VITE_WEATHER_KEY}&q=${city}&lang=es`)
       const json = await request.json()
       setWeather(json)
     } catch (error) {
@@ -30,8 +30,10 @@ export default function App() {
 
   return (
     <>
-      <Form onChangeCity={handleChangeCity} />
-      <Main weather={weather} />
+      <div className='container mt-4'>
+        <Form onChangeCity={handleChangeCity} />
+        <Main weather={weather} />
+      </div>
     </>
   )
 }

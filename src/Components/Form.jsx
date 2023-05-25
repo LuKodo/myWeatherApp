@@ -16,9 +16,13 @@ const Form = ({ onChangeCity }) => {
 
   return (
     <>
-      <form onSubmit={handleSubmit}>
-        <input type="text" onChange={(e) => onChange(e.target?.value)} />
-      </form>
+      <div className='columns p-2'>
+        <div className="column is-4 is-offset-4">
+          <form onSubmit={handleSubmit}>
+            <input className='input' placeholder='Buscar ciudad' type="text" onChange={(e) => onChange(e.target?.value)} />
+          </form>
+        </div>
+      </div>
     </>
   )
 }
